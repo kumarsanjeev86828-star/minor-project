@@ -1,8 +1,21 @@
 import React from "react"
-import WorkspaceProvider from "./provider"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import AppSidebar from "./_components/AppSidebar"
+import AppHeader from './_components/AppHeader'
+
 function WorkspaceProvider({children}){
     return(
-       <WorkspaceProvider>{children}</WorkspaceProvider>
+        <SidebarProvider>
+            <AppSidebar />
+
+            {/* <SidebarTrigger/> */}
+            
+               <div className="w-full">
+                <AppHeader/>
+                {children}</div>
+        </SidebarProvider> 
+                
+      //<WorkspaceProvider>{children}</WorkspaceProvider>
     )
 }
-export default WorkspaceLayout
+export default WorkspaceProvider

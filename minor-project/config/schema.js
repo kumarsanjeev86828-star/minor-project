@@ -6,3 +6,15 @@ export const usersTable = pgTable("users", {
   email: varchar({ length: 255 }).notNull().unique(),
   subcriptionID:varchar(),
 });
+export const coursesTables=pgTable("courses",{
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  cid:varchar().notNull(),
+  name:varchar(),
+  description:varchar(),
+  noOfChapters:integer().notNull(),
+  includeVideo: boolean().default(false),
+  level:varchar().notNull(),
+  category:varchar(),
+  courseJson:json(),
+  userEmail:varchar('userEmail').references(()=>usersTable.email).notNull()
+})

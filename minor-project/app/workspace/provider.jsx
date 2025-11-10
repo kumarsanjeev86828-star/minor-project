@@ -8,11 +8,14 @@ function WorkspaceProvider({children}){
         <SidebarProvider>
             <AppSidebar />
 
-            {/* <SidebarTrigger/> */}
+            {/* {<SidebarTrigger/>}  */}
             
                <div className="w-full">
                 <AppHeader/>
-                {children}</div>
+                <div className="p-10">
+                {children} </div>
+               
+                </div>
         </SidebarProvider> 
                 
       //<WorkspaceProvider>{children}</WorkspaceProvider>

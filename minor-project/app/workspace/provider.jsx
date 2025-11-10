@@ -11,10 +11,9 @@ function WorkspaceProvider({children}){
             {/* {<SidebarTrigger/>}  */}
             
                <div className="w-full">
-                <AppHeader/>
-                <div className="p-10">
-                {children} </div>
-               
+                <AppHeader></AppHeader>
+                   <div className="p-10">{children}
+                   </div>
                 </div>
         </SidebarProvider> 
                 

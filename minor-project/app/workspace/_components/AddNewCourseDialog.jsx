@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button'
 import { Sparkle } from 'lucide-react'
 
 function AddNewCourseDialog({ children }) {
+  const [loading,setLoading]=useState(false);
   const [formData, setFormData] = useState({
   name: '',
   description: '',
@@ -31,8 +32,13 @@ function AddNewCourseDialog({ children }) {
   level: ''
 });
 
-  const onGenerate=()=>{
+  const onGenerate=async()=>{
 console.log(formData);
+setLoading(true);
+const result = await axios.post()('api/generate-course-layout',{
+  ...formData
+});
+console.log(result.data);
   }
   const onHandleInputChanges=(field,value)=>{
      setFormData(prev=>({
@@ -40,6 +46,7 @@ console.log(formData);
       [field]:value
     }));
     console.log(formData);
+    setLoading(false)
   }
   return (
     <Dialog>
@@ -85,7 +92,9 @@ console.log(formData);
                 <Input placeholder="Category(Separated by Comma"  onChange={(event)=>onHandleInputChanges('category',event?.target.value)}></Input>
               </div>
               <div className="mt-5">
-                <Button className={"w-full"} onClick={onGenerate}>  <Sparkle /> Generate Course</Button>
+                <Button className={"w-full"} onClick={onGenerate} disabled={loading}> 
+                  {loading?<Loader2Icon className='animate-spin'/>:
+                   <Sparkle />} Generate Course</Button>
               </div>
             </div>
           </DialogDescription>

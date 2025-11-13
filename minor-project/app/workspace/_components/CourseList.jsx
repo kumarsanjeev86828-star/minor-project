@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import React,{ useState } from 'react'
 import Image from 'next/image'
-import AddNewCourseDialog from './AddNewCourse';
+import AddNewCourseDialog from './AddNewCourseDialog';
 function CourseList(){
   const [courseList,setCourseList] = useState([]);
     return(

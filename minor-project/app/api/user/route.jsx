@@ -26,3 +26,19 @@ return NextResponse.json(result)
     }
     return NextResponse.json(users[0])
 }
+
+
+//Alteranative Code I got from chatgpt:
+// app/api/user/route.js
+// import { NextResponse } from "next/server";
+
+// export async function POST(req) {
+//   try {
+//     const body = await req.json();
+//     console.log("Incoming data:", body);
+//     return NextResponse.json({ message: "It works!" });
+//   } catch (error) {
+//     console.error("Error in /api/user:", error);
+//     return NextResponse.json({ error: error.message }, { status: 500 });
+//   }
+// }

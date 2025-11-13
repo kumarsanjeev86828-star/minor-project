@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { LayoutDashboard,Book,Compass,PencilRulerIcon,WalletCards,UserCircleIcon} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import AddNewCourseDialog from './AddNewCourse'
+import AddNewCourseDialog from './AddNewCourseDialog'
 
 const SideBarOptions = [
     {

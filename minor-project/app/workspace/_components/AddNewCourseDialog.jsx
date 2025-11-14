@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
+import { v4 as uuidv4 } from 'uuid';
 import {
   Select,
   SelectContent,
@@ -33,20 +34,31 @@ function AddNewCourseDialog({ children }) {
 });
 
   const onGenerate=async()=>{
+    const courseId=uuidv4();
 console.log(formData);
+try{
 setLoading(true);
 const result = await axios.post()('api/generate-course-layout',{
   ...formData
 });
-console.log(result.data);
-  }
-  const onHandleInputChanges=(field,value)=>{
-     setFormData(prev=>({
-      ...prev,
-      [field]:value
-    }));
-    console.log(formData);
+// console.log(result.data);
+//   }
+//   const onHandleInputChanges=(field,value)=>{
+//      setFormData(prev=>({
+//       ...prev,
+//       [field]:value
+//     }));
+//     console.log(formData);
+//     setLoading(false)
+  
+}
+  catch (e)
+
+  {
     setLoading(false)
+    console.log(e)
+  }
+
   }
   return (
     <Dialog>

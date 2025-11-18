@@ -22,7 +22,8 @@ import { Button } from '@/components/ui/button'
 import { Sparkle } from 'lucide-react'
 import { Loader2, Sparkles } from "lucide-react";
 import axios from 'axios';
-
+import {v4 as uuidv4} from 'uuid';
+import {useRouter} from 'next/navigation'
 function AddNewCourseDialog({ children }) {
   const [loading,setLoading]=useState(false);
   const [formData, setFormData] = useState({
@@ -33,20 +34,32 @@ function AddNewCourseDialog({ children }) {
   category: '',
   level: ''
 });
+const router=useRouter();
 
-  const onGenerate=async()=>{
+const onHandleInputChange=(field,value)=>{
+  setFormData(prev =>({
+    ...prev,
+    [field]: value
+  }));
+  console.log(formData);
+}
+
+const onGenerate=async()=>{
 console.log(formData);
+const courseId=uuidv4();
 try{
 setLoading(true);
 const result = await axios.post('/api/generate-course-layout',{
-  ...formData
+  ...formData,
+  courseId:courseId
 });
 console.log(result.data);
 setLoading(false);
+router.push('/workspace/edit-course/' + result.data?.courseId);
   }
   catch(e){
     setLoading(false)
- console.log(e)
+    console.log(e)
 }
 }
 

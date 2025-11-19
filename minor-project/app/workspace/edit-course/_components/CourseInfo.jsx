@@ -5,6 +5,9 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
 function CourseInfo({course}){
     const courseLayout=course?.courseJson?.course;
     const[loading,setLoading ]= useState( false);

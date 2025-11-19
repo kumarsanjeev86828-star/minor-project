@@ -1,6 +1,6 @@
-export async function POST(req) {
-    const{course,courseTitle,courseID}=await req.json();
-}
+// export async function POST(req) {
+//     const{course,courseTitle,courseID}=await req.json();
+// }
 import { NextResponse } from "next/server";
 import { ai } from "../generate-course-layout/route";
 import axios from "axios";
@@ -28,6 +28,7 @@ export async function POST(req) {
     tools,
   };
   const model = 'gemini-2.5-pro';
+  // const model = 'gemini-2.0-flash';
   const contents = [
     {
       role: 'user',
@@ -91,3 +92,9 @@ youtubeVideoListResp.forEach(item=>{
 console.log("youtubeVideoList",youtubeVideoList)
 return youtubeVideoList;
 }
+
+// export async function POST(req) {
+//   const body = await req.json();
+//   console.log("REQ BODY ===>", body);
+//   return NextResponse.json({ ok: true });
+// }

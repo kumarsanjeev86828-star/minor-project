@@ -37,7 +37,7 @@ Schema:
 
 export async function POST(req) {
     const {courseId,...formData}=await req.json();
-
+try{ //new line of "try"
  const user=await currentUser();
   const ai = new GoogleGenAI({
       apiKey:process.env.GEMINI_API_KEY,
@@ -60,8 +60,8 @@ export async function POST(req) {
   const config={
   responseMimeType: 'text/plain',
   };
-  const model = 'gemini-2.5-flash';
-  // const model = "gemini-1.5-flash"; // or "gemini-pro"
+  // const model = 'gemini-2.0-flash';
+  const model = "gemini-2.0-pro"; // or "gemini-pro"
 
   const contents = [
     {
@@ -86,7 +86,8 @@ export async function POST(req) {
   //   console.log(chunk.text);
   // }
 
-  console.log(response.candidates[0].content.parts[0].text);
+  // console.log(response.candidates[0].content.parts[0].text);
+  console.log(response.candidates[0].content.parts[0].text||"");//newly added 
   // const RawResp=response?.candidates[0]?.content?.parts[0]?.text 
   //newly added line
   const RawResp = response?.candidates[0]?.content?.parts[0]?.text || "";
@@ -97,7 +98,7 @@ export async function POST(req) {
    const ImagePrompt=JSONResp.course?.bannerImagePrompt;
 
    //generate Image
-   const bannerImageUrl= await GenerateImage(ImagePrompt)
+   const bannerImageUrl= await GenerateImage(ImagePrompt);
   //Save to Database
   const result= await db.insert(coursesTable).values({
     ...formData,
@@ -110,9 +111,11 @@ export async function POST(req) {
   // return NextResponse.json(response.text());
   return NextResponse.json({courseId:courseId});
 
-
 }
-
+catch(error){//newly added "catch block"
+  console.error("AI or JSON parsing error:",error?.message||error);
+}
+}
 
 const GenerateImage=async(imagePrompt)=>{
   const BASE_URL='https://aigurulab.tech';

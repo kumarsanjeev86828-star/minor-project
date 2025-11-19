@@ -3,7 +3,7 @@ import { useParams } from 'next/navigation';
 import axios from 'axios';
 import React, { useState,useEffect } from 'react';
 import CourseInfo from "../_components/CourseInfo";
-import ChapterTopicList from "../_components/ChapterTopicList"
+import ChapterTopicList from "../_components/ChapterTopicList";
 function EditCourse(){
     const {courseId}=useParams();
     const [loading,setLoading]=useState(false);

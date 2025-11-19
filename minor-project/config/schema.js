@@ -6,7 +6,7 @@ export const usersTable = pgTable("users", {
   email: varchar({ length: 255 }).notNull().unique(),
   subcriptionID:varchar(),
 });
-export const coursesTables=pgTable("courses",{
+export const coursesTable=pgTable("courses",{
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   cid:varchar().notNull(),
   name:varchar(),
@@ -16,5 +16,8 @@ export const coursesTables=pgTable("courses",{
   level:varchar().notNull(),
   category:varchar(),
   courseJson:json(),
-  userEmail:varchar('userEmail').references(()=>usersTable.email).notNull()
+  bannerImageUrl:varchar().default(''),
+  courseContent:json().default({}),
+  userEmail:varchar('userEmail').
+  references(()=>usersTable.email).notNull()
 })

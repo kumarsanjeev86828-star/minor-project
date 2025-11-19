@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
           <Provider>
             {children}
           </Provider>
-
+       <Toaster />
         </body>
       </html>
     </ClerkProvider>

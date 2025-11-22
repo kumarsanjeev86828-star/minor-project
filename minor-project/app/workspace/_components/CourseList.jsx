@@ -22,7 +22,7 @@ function CourseList(){
   }
     return(
         <div>
-        <h2 className='font-bold text-3xl'>Course List</h2>
+        <h2 className='font-bold text-3xl mt-6 mb-2'>Course List</h2>
         {courseList?.length ==0 ?
          <div className='flex p-7 items-center justify-center flex-col border rounded-xl bg-secondary'>
 
@@ -32,7 +32,7 @@ function CourseList(){
             <Button>+ Create your first course</Button>
             </AddNewCourseDialog>
         </div>:
-           <div>
+           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 gap-5'>
              {/* List Of Courses */}
              {courseList?.map((course,index)=>(
               <CourseCard course={course} key = {index}/>

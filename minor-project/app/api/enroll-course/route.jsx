@@ -3,6 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { db } from "@/config/db";
 import { NextResponse } from "next/server";
+import { desc } from "drizzle-orm";
 export async function POST(req){
     const {courseId}=await req.json();
     const user=await currentUser();
